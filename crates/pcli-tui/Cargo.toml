@@ -1,0 +1,13 @@
+[package]
+name = "pcli-tui"
+description = "Terminal UI for pcli"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+pcli-core.workspace = true
+ratatui.workspace = true
+crossterm.workspace = true
+anyhow.workspace = true

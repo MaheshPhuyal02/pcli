@@ -1,0 +1,20 @@
+[package]
+name = "pcli-daemon"
+description = "Background daemon for pcli reminders and timer"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "pcli-daemon"
+path = "src/main.rs"
+
+[dependencies]
+pcli-core.workspace = true
+tokio.workspace = true
+notify-rust.workspace = true
+chrono.workspace = true
+anyhow.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true

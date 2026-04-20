@@ -1,0 +1,26 @@
+[package]
+name = "pcli"
+description = "Project CLI - A developer-focused task management tool"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "pcli"
+path = "src/main.rs"
+
+[dependencies]
+pcli-core.workspace = true
+clap.workspace = true
+tokio.workspace = true
+chrono.workspace = true
+anyhow.workspace = true
+colored.workspace = true
+crossterm.workspace = true
+tabled.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+dirs.workspace = true
+rustyline = "15"
+shellwords = "1"
