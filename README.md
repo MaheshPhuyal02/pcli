@@ -91,15 +91,23 @@ Switching: enter the REPL with bare `pcli`, then type the project name.
 |---------|-------------|
 | `pcli tasks` | List tasks in current project |
 | `pcli tasks today` | Due today |
+| `pcli tasks tomorrow` | Due tomorrow |
+| `pcli tasks week` | Due within the next 7 days |
+| `pcli tasks overdue` | Past due tasks |
 | `pcli tasks active` | In-progress only |
 | `pcli tasks pending` | Todo only |
 | `pcli tasks done` | Completed |
+| `pcli tasks cancelled` | Cancelled tasks only |
 | `pcli add "title"` | Add a task |
 | `pcli add "title" --description "..." -p high -d tomorrow` | Full form |
 | `pcli task <id>` | Show full detail including description |
 | `pcli task <id> start` | Mark in-progress |
 | `pcli task <id> done` | Mark complete |
 | `pcli task <id> stop` | Revert to todo |
+| `pcli task <id> edit "new title"` | Rename task |
+| `pcli task <id> description "notes"` | Update task notes |
+| `pcli task <id> due tomorrow` | Set due date |
+| `pcli task <id> priority high` | Change task priority |
 | `pcli task <id> delete` | Remove |
 
 **Priority:** `low`, `normal` (default), `high`, `urgent` (aliases: `l`/`n`/`h`/`u`, `1`–`4`).

@@ -118,7 +118,19 @@ impl Completer for PcliHelper {
 
             match cmd.as_str() {
                 "tasks" => {
-                    for filter in &["today", "pending", "done", "active"] {
+                    for filter in &[
+                        "today",
+                        "tomorrow",
+                        "week",
+                        "overdue",
+                        "pending",
+                        "active",
+                        "done",
+                        "cancelled",
+                        "status:",
+                        "due:",
+                        "priority:",
+                    ] {
                         if filter.starts_with(prefix) {
                             completions.push(Pair {
                                 display: filter.to_string(),
@@ -130,7 +142,19 @@ impl Completer for PcliHelper {
                 "task" => {
                     if words.len() >= 2 {
                         // Suggest actions
-                        for action in &["done", "complete", "start", "stop", "delete", "edit"] {
+                        for action in &[
+                            "done",
+                            "complete",
+                            "start",
+                            "stop",
+                            "delete",
+                            "edit",
+                            "title",
+                            "description",
+                            "note",
+                            "priority",
+                            "due",
+                        ] {
                             if action.starts_with(prefix) {
                                 completions.push(Pair {
                                     display: action.to_string(),
@@ -342,10 +366,18 @@ pub fn run(storage: &Storage) -> Result<()> {
 /// Print welcome banner
 fn print_banner(storage: &Storage) -> Result<()> {
     println!();
-    println!("{}", "╭─────────────────────────────────────────╮".cyan());
-    println!("{}", "│     📋 pcli - Project CLI               │".cyan());
-    println!("{}", "│     Tab for autocomplete, ? for help   │".cyan());
-    println!("{}", "╰─────────────────────────────────────────╯".cyan());
+    println!("{}", r"  ██████╗  ██████╗██╗     ██╗".cyan().bold());
+    println!("{}", r"  ██╔══██╗██╔════╝██║     ██║".cyan().bold());
+    println!("{}", r"  ██████╔╝██║     ██║     ██║".cyan().bold());
+    println!("{}", r"  ██╔═══╝ ██║     ██║     ██║".cyan().bold());
+    println!("{}", r"  ██║     ╚██████╗███████╗██║".cyan().bold());
+    println!("{}", r"  ╚═╝      ╚═════╝╚══════╝╚═╝".cyan().bold());
+    println!();
+    println!(
+        "  {}   {}",
+        "Project CLI · task manager".cyan(),
+        "Tab = autocomplete · ? = help".dimmed()
+    );
     println!();
 
     // Show current project status
@@ -469,12 +501,23 @@ fn print_help() {
     println!("{}", "Tasks:".bold().underline());
     println!("  {}                List tasks in current project", "tasks".cyan());
     println!("  {} today          Tasks due today", "tasks".cyan());
+    println!("  {} tomorrow       Tasks due tomorrow", "tasks".cyan());
+    println!("  {} week          Tasks due this week", "tasks".cyan());
+    println!("  {} overdue       Tasks past due", "tasks".cyan());
     println!("  {} pending        Pending tasks only", "tasks".cyan());
+    println!("  {} active         In-progress tasks only", "tasks".cyan());
+    println!("  {} done           Completed tasks only", "tasks".cyan());
+    println!("  {} cancelled      Cancelled tasks only", "tasks".cyan());
     println!("  {} \"title\"        Add new task", "add".cyan());
     println!("  {} \"title\" -p high -d tomorrow", "add".cyan());
     println!("  {} <id>            View task details", "task".cyan());
     println!("  {} <id> done       Mark as complete", "task".cyan());
     println!("  {} <id> start      Start working on task", "task".cyan());
+    println!("  {} <id> stop       Revert to todo", "task".cyan());
+    println!("  {} <id> edit \"new title\"  Rename task", "task".cyan());
+    println!("  {} <id> description \"text\"  Update notes", "task".cyan());
+    println!("  {} <id> priority high       Change priority", "task".cyan());
+    println!("  {} <id> due tomorrow       Set due date", "task".cyan());
     println!("  {} <id> delete     Delete task", "task".cyan());
     println!();
 

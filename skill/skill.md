@@ -45,6 +45,10 @@ pcli task <id>             # full detail — shows description
 pcli task <id> start       # mark in_progress
 pcli task <id> done        # mark complete
 pcli task <id> stop        # revert to todo
+pcli task <id> edit "new title"   # rename task
+pcli task <id> description "notes" # update task notes
+pcli task <id> priority high       # change priority
+pcli task <id> due tomorrow       # set due date
 pcli task <id> delete      # remove
 ```
 

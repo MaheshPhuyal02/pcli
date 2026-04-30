@@ -193,6 +193,24 @@ impl Storage {
         Ok(())
     }
 
+    /// Update a task's editable fields
+    pub fn update_task(&self, task: &Task) -> Result<()> {
+        self.conn.execute(
+            "UPDATE tasks SET title = ?1, description = ?2, status = ?3, priority = ?4, due_date = ?5, updated_at = ?6, completed_at = ?7 WHERE id = ?8",
+            params![
+                task.title,
+                task.description,
+                task.status.to_string(),
+                task.priority.to_string(),
+                task.due_date.map(|d| d.to_rfc3339()),
+                task.updated_at.to_rfc3339(),
+                task.completed_at.map(|d| d.to_rfc3339()),
+                task.id,
+            ],
+        )?;
+        Ok(())
+    }
+
     /// Delete a task
     pub fn delete_task(&self, id: i32) -> Result<()> {
         self.conn.execute("DELETE FROM tasks WHERE id = ?1", [id])?;

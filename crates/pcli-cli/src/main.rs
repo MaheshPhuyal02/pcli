@@ -47,7 +47,7 @@ pub enum Commands {
 
     /// List tasks
     Tasks {
-        /// Filter: today, pending, done
+        /// Filter: today, tomorrow, week, overdue, pending, active, done, cancelled
         #[arg(value_name = "FILTER")]
         filter: Option<String>,
     },
